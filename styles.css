@@ -28,8 +28,8 @@ body::after {
     bottom: -10px;  /* Menggeser gambar ke bawah */
     left: 50%;  /* Menengahkan gambar */
     transform: translateX(-50%);  /* Menengahkan gambar */
-    width: 130%;
-    height: 200px; /* Sesuaikan dengan tinggi gambar */
+    width: 100%;
+    height: 130px; /* Sesuaikan dengan tinggi gambar */
     z-index: -1;
     background-image: url('portal.png');
     background-size: cover;
