@@ -7,7 +7,7 @@
 
 body, h1, h2, input, select, option, button {
     font-family: 'MinecraftFont', sans-serif;
-    margin-top: 10px;  /* Naikkan semua elemen sedikit */
+    margin-top: 5px;
 }
 
 body {
@@ -17,8 +17,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Menonaktifkan scrolling */
+    min-height: 100vh; /* Set minimum height */
     position: relative;
 }
 
@@ -30,8 +29,8 @@ body::after {
     left: 0;
     width: 100%;
     height: 200px; /* Sesuaikan dengan tinggi gambar */
-    z-index: -1; /* Menjadikan lapisan di belakang konten utama */
-    background-image: url('portal.png'); /* Path ke gambar */
+    z-index: -1;
+    background-image: url('portal.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -46,7 +45,7 @@ body::after {
     max-width: 600px;
     animation: slideUp 0.5s ease;
     position: relative;
-    margin-top: 20px;  /* Naikkan container sedikit */
+    margin-top: 20px;
 }
 
 .container::before {
@@ -59,8 +58,8 @@ body::after {
     background-image: url('skinpack-text.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 200px;  /* Ukuran gambar diperbesar */
-    height: 130px;  /* Ukuran gambar diperbesar */
+    width: 200px;
+    height: 130px;
     opacity: 1;
 }
 
@@ -116,7 +115,7 @@ h2 {
 }
 
 img {
-    max-width: 250px;  /* Ukuran gambar diperbesar */
+    max-width: 250px;
     margin-top: 10px;
     display: block;
 }
@@ -131,7 +130,7 @@ img {
 }
 
 .skin-item img {
-    max-width: 70px;  /* Ukuran gambar diperbesar */
+    max-width: 70px;
     margin-right: 10px;
 }
 
@@ -153,11 +152,11 @@ img {
 
 .delete-icon {
     cursor: pointer;
-    background-image: url('icon_trash.png'); /* Path ke gambar */
+    background-image: url('icon_trash.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 20px; /* Sesuaikan ukuran gambar */
-    height: 20px; /* Sesuaikan ukuran gambar */
+    width: 20px;
+    height: 20px;
     margin-left: auto;
 }
 
