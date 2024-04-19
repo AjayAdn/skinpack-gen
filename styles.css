@@ -22,16 +22,6 @@ body {
     position: relative;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    color: #F4CE14;
-    padding: 10px 20px;
-}
-
 body::after {
     content: '';
     position: absolute;
