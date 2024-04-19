@@ -31,19 +31,35 @@ body {
     position: relative;
 }
 
-.container::before {
+body::before {
     content: '';
     position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    background-image: url('skinpack-text.png');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Sesuaikan dengan tinggi gambar */
+    z-index: -1; /* Menjadikan lapisan di belakang konten utama */
+    background-image: url('header.png'); /* Path ke gambar */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top; /* Menjadikan posisi gambar di tengah atas */
+    opacity: 1; /* Sesuaikan opasitas gambar */
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Sesuaikan dengan tinggi gambar */
+    z-index: 0; /* Menjadikan lapisan di belakang konten utama */
+    background-image: url('skinmaker-text.png'); /* Path ke gambar */
     background-size: contain;
     background-repeat: no-repeat;
-    width: 200px;  /* Ukuran gambar diperbesar */
-    height: 130px;  /* Ukuran gambar diperbesar */
-    opacity: 1;
+    background-position: center top; /* Menjadikan posisi gambar di tengah atas */
+    opacity: 1; /* Sesuaikan opasitas gambar */
+    background-color: #1A1A1A; /* Sesuaikan dengan warna background form */
 }
 
 #formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
