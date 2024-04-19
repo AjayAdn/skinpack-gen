@@ -5,7 +5,7 @@
     font-style: normal;
 }
 
-body, h1, h2, input, select, option, button {
+footer, body, h1, h2, input, select, option, button {
     font-family: 'MinecraftFont', sans-serif;
     margin-top: -50px;
 }
@@ -20,6 +20,16 @@ body {
     align-items: center;
     min-height: 100vh; /* Set minimum height */
     position: relative;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: #F4CE14;
+    padding: 10px 20px;
 }
 
 body::after {
