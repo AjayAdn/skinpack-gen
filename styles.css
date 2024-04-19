@@ -15,41 +15,24 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    overflow-x: hidden;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Menonaktifkan scrolling */
     position: relative;
-    flex-direction: column;
 }
 
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
-    background-image: url('skinmaker-text.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 130px;
-    opacity: 1;
-}
-
+/* Menambahkan background untuk footer.png */
 body::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-100%);
-    z-index: -2;
-    background-image: url('header.png');
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Sesuaikan dengan tinggi gambar */
+    z-index: -1; /* Menjadikan lapisan di belakang konten utama */
+    background-image: url('portal.png'); /* Path ke gambar */
     background-size: cover;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 89px;
-    opacity: 1;
 }
 
 .container {
@@ -62,6 +45,21 @@ body::after {
     max-width: 600px;
     animation: slideUp 0.5s ease;
     position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    background-image: url('skinpack-text.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;  /* Ukuran gambar diperbesar */
+    height: 130px;  /* Ukuran gambar diperbesar */
+    opacity: 1;
 }
 
 #formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
@@ -104,6 +102,10 @@ body::after {
     background-color: #DAA520;
 }
 
+#formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
+    margin-bottom: 20px;
+}
+
 h2 {
     border-bottom: 2px solid #FFD700;
     padding-bottom: 10px;
@@ -112,7 +114,7 @@ h2 {
 }
 
 img {
-    max-width: 250px;
+    max-width: 250px;  /* Ukuran gambar diperbesar */
     margin-top: 10px;
     display: block;
 }
@@ -127,7 +129,7 @@ img {
 }
 
 .skin-item img {
-    max-width: 70px;
+    max-width: 70px;  /* Ukuran gambar diperbesar */
     margin-right: 10px;
 }
 
@@ -149,46 +151,70 @@ img {
 
 .delete-icon {
     cursor: pointer;
-    background-image: url('icon_trash.png');
+    background-image: url('icon_trash.png'); /* Path ke gambar */
     background-size: contain;
     background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
+    width: 20px; /* Sesuaikan ukuran gambar */
+    height: 20px; /* Sesuaikan ukuran gambar */
     margin-left: auto;
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
     .container {
         width: 95%;
         padding: 20px;
     }
-
-    .upload-button {
-        width: 80px;
-        height: 80px;
-    }
-
-    .skin-item img {
-        max-width: 40px;
-    }
 }
 
-@media (max-width: 480px) {
-    .container {
-        width: 90%;
-        padding: 15px;
-    }
+.upload-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    .upload-button {
-        width: 70px;
-        height: 70px;
-    }
+.upload-button {
+    background-color: transparent;
+    color: #F4CE14;  
+    border: 1.9px dashed #FFD700;
+    border-radius: 5px;
+    padding: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-    .skin-item img {
-        max-width: 30px;
-    }
+.plus-icon {
+    font-size: 40px;
+}
+
+.upload-text {
+    margin-top: 5px;
+    color: #FFFFFF;
+}
+
+#skinType {
+    background-color: #212121;
+    color: #FFFFFF;
+}
+
+.dark, .yellow, input[type="text"], select {
+    margin-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.delete-icon {
+    cursor: pointer;
+    margin-left: auto;
 }
