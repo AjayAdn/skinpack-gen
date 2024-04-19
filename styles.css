@@ -25,11 +25,11 @@ body {
 body::after {
     content: '';
     position: absolute;
-    bottom: 0;  /* Menyentuh bawah halaman */
+    bottom: -10px;  /* Mengangkat gambar ke atas */
     left: 50%;  /* Menengahkan gambar */
     transform: translateX(-50%);  /* Menengahkan gambar */
     width: 100%;
-    height: calc(100vh - 130px); /* Tinggi halaman dikurangi tinggi gambar */
+    height: 230px; /* Sesuaikan dengan tinggi gambar */
     z-index: -1;
     background-image: url('portal.png');
     background-size: cover;
