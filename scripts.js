@@ -31,10 +31,10 @@ function uploadSkin() {
                 if (img.width === 32 || img.width === 64 || img.width === 128) {
                     previewImage.src = reader.result;
                     previewImage.style.display = 'block';
-                    uploadButton.remove(); 
+                    uploadButton.remove();
                     document.querySelector('.upload-container').removeChild(uploadButton);
                 } else {
-                    alert('Please upload an minecraft skin.');
+                    alert('Please upload an image with size 32x32, 64x64, or 128x128.');
                 }
             };
         };
@@ -56,12 +56,17 @@ function addToSkinPack() {
         return;
     }
 
+    const isSkinExist = skinData.some(skin => skin.localization_name === previewSkinName);
+    if (isSkinExist) {
+        alert('Skin name already exists, please choose another name');
+        return;
+    }
+
     const previewSkinType = document.getElementById('skinType').value;
-    const geometry = previewSkinType === 'default' ? 'geometry.humanoid.custom' : 'geometry.humanoid.customSlim';
 
     const skinItem = {
-        geometry: geometry,
-        localization_name: previewSkinName,
+        geometry: `geometry.humanoid.${previewSkinType}`,
+        localization_name: `${previewSkinName}`,
         texture: previewImage.split(',')[1],
         type: "free"
     };
@@ -138,6 +143,7 @@ function generateSkinPack(skinPackName) {
     const skinFolder = {};
     const skins = [];
     const manifestSkins = [];
+    const langData = {};
 
     skinData.forEach((skin) => {
         const skinFileName = `${skin.localization_name}.png`;
@@ -154,7 +160,12 @@ function generateSkinPack(skinPackName) {
             texture: `./${skinFileName}`,
             type: skin.type
         });
+
+        langData[`skin.${skin.localization_name}`] = skin.localization_name;
     });
+
+    const uuid = generateUUID();
+    langData[`skinpack.${uuid}`] = skinPackName;
 
     const manifest = {
         format_version: 1,
@@ -177,6 +188,8 @@ function generateSkinPack(skinPackName) {
     const zip = new JSZip();
     zip.file('manifest.json', JSON.stringify(manifest, null, 2));
     zip.file('skins.json', JSON.stringify({skins}, null, 2));
+    
+    zip.file('texts/en_US.lang', Object.entries(langData).map(([key, value]) => `${key}=${value}`).join('\n'));
 
     for (const [path, content] of Object.entries(skinFolder)) {
         zip.file(path, content, {base64: true});
