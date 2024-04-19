@@ -191,6 +191,5 @@ img {
 
 
 input[type="text"], select {
-    padding-right: 10px;
-    width: calc(100% - 20px);
+    width: 100%;
 }
