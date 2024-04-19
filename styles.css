@@ -41,8 +41,8 @@ body {
     background-image: url('skinpack-text.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 140px;
-    height: 90px;
+    width: 200px;  /* Ukuran gambar diperbesar */
+    height: 130px;  /* Ukuran gambar diperbesar */
     opacity: 1;
 }
 
@@ -73,7 +73,7 @@ body {
 
 .yellow {
     background-color: #F4CE14;
-    color: #000000;
+    color: #FFFFFF;  
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -98,7 +98,7 @@ h2 {
 }
 
 img {
-    max-width: 200px;
+    max-width: 250px;  /* Ukuran gambar diperbesar */
     margin-top: 10px;
     display: block;
 }
@@ -113,7 +113,7 @@ img {
 }
 
 .skin-item img {
-    max-width: 50px;
+    max-width: 70px;  /* Ukuran gambar diperbesar */
     margin-right: 10px;
 }
 
@@ -161,7 +161,7 @@ img {
 
 .upload-button {
     background-color: transparent;
-    color: #FFD700;
+    color: #FFFFFF;  
     border: 1.9px dashed #FFD700;
     border-radius: 5px;
     padding: 5%;
@@ -187,4 +187,8 @@ img {
 #skinType {
     background-color: #212121;
     color: #FFFFFF;
+}
+
+input[type="text"], select {
+    margin-right: 20px;  /* Jarak di kanan untuk kolom diperbesar */
 }
