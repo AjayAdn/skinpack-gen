@@ -10,6 +10,7 @@ body, h1, h2, input, select, option, button {
     margin-top: 5px;
 }
 
+
 body {
     background-color: #0E0E0E;
     color: #FFFFFF;
@@ -24,10 +25,10 @@ body {
 body::after {
     content: '';
     position: absolute;
-    bottom: -20px;  /* Menggeser gambar ke bawah */
+    bottom: -10px;  /* Menggeser gambar ke bawah */
     left: 50%;  /* Menengahkan gambar */
     transform: translateX(-50%);  /* Menengahkan gambar */
-    width: 190%;
+    width: 130%;
     height: 200px; /* Sesuaikan dengan tinggi gambar */
     z-index: -1;
     background-image: url('portal.png');
