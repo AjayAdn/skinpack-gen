@@ -189,6 +189,7 @@ img {
     color: #FFFFFF;
 }
 
-.dark, .yellow, input[type="text"], select {
-    padding-right: -2px;
+
+input[type="text"], select {
+    padding-right: 10px;
 }
