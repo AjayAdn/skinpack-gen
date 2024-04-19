@@ -189,6 +189,6 @@ img {
     color: #FFFFFF;
 }
 
-input[type="text"], select {
-    margin-right: 20px;  /* Jarak di kanan untuk kolom diperbesar */
+.dark, .yellow, input[type="text"], select {
+    padding-right: 20px;
 }
