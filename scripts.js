@@ -97,6 +97,7 @@ function updateSkinList() {
 
         const skinImg = document.createElement('img');
         skinImg.src = `data:image/png;base64,${skin.texture}`;
+        skinImg.className = 'skin-img'; // Tambahkan class skin-img
         skinItem.appendChild(skinImg);
 
         const skinInfo = document.createElement('div');
@@ -116,7 +117,6 @@ function updateSkinList() {
 
         const deleteIcon = document.createElement('span');
         deleteIcon.className = 'delete-icon';
-        deleteIcon.innerText = '🗑️';
         deleteIcon.onclick = function() {
             skinData.splice(index, 1);
             updateSkinList();
