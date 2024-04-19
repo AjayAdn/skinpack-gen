@@ -26,15 +26,15 @@ body {
 .container::before {
     content: '';
     position: absolute;
-    top: -30px; /* Menaikkan posisi gambar */
+    top: -35px; /* Menaikkan posisi gambar */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1; /* Mengatur lapisan di atas konten utama */
     background-image: url('skinpack-text.png'); /* Path ke gambar */
     background-size: contain;
     background-repeat: no-repeat;
-    width: 130px; /* Sesuaikan dengan lebar gambar */
-    height: 80px; /* Sesuaikan dengan tinggi gambar */
+    width: 140px; /* Sesuaikan dengan lebar gambar */
+    height: 90px; /* Sesuaikan dengan tinggi gambar */
     opacity: 1; /* Sesuaikan opasitas gambar */
 }
 
