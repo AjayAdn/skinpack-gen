@@ -25,7 +25,7 @@ body {
 body::after {
     content: '';
     position: absolute;
-    bottom: 0px;  /* Menggeser gambar ke bawah */
+    bottom: 10px;  /* Menggeser gambar ke bawah */
     left: 50%;  /* Menengahkan gambar */
     transform: translateX(-50%);  /* Menengahkan gambar */
     width: 100%;
