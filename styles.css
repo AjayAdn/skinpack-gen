@@ -195,3 +195,14 @@ img {
     width: 100%; /* Mengatur lebar kolom */
     box-sizing: border-box; /* Menyesuaikan box model */
 }
+
+.delete-icon {
+    cursor: pointer;
+    background-image: url('icon_trash.png'); /* Path ke gambar */
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px; /* Sesuaikan ukuran gambar */
+    height: 20px; /* Sesuaikan ukuran gambar */
+    margin-left: auto;
+}
+
