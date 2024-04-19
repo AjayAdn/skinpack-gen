@@ -21,19 +21,20 @@ body {
     position: relative;
 }
 
-/* Menambahkan background untuk footer.png */
 body::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: -20px;  /* Menggeser gambar ke bawah */
+    left: 50%;  /* Menengahkan gambar */
+    transform: translateX(-50%);  /* Menengahkan gambar */
+    width: 190%;
     height: 200px; /* Sesuaikan dengan tinggi gambar */
     z-index: -1;
     background-image: url('portal.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 
 .container {
     background-color: #1A1A1A;
