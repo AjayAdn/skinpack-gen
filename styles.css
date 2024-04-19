@@ -27,7 +27,7 @@ body::after {
     position: absolute;
     bottom: -50px;  /* Mengangkat gambar ke atas */
     left: 50%;  /* Menengahkan gambar */
-    transform: translateX(-30%);
+    transform: translateX(-80%);
     width: 100%;
     height: 230px; /* Sesuaikan dengan tinggi gambar */
     z-index: -1;
