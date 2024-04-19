@@ -209,18 +209,3 @@ function generateUUID() {
         return v.toString(16);
     });
 }
-
-function updatePortalPosition() {
-    const skinList = document.getElementById('skinList'); // Ganti dengan ID atau selector untuk skin list
-    const portal = document.getElementById('portal');
-
-    if (skinList) {
-        const skinCount = skinList.children.length; // Menghitung jumlah skin dalam skin list
-        const newBottom = -17 + (skinCount * 10); // Sesuaikan angka 10 dengan jarak tambahan yang diinginkan per skin
-
-        portal.style.bottom = newBottom + 'px';
-    }
-}
-
-// Panggil fungsi ini setiap ada perubahan pada skin list
-updatePortalPosition();
