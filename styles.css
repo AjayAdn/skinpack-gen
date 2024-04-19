@@ -9,16 +9,36 @@ body {
             height: 100vh;
         }
 
-        .container {
-            background-color: #1A1A1A;
-            color: #FFFFFF;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Meningkatkan ketebalan bayangan */
-            width: 80%;
-            max-width: 600px;
-            animation: slideUp 0.5s ease;
-        }
+        /* ... (Kode CSS yang sudah ada sebelumnya) ... */
+
+.container {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    width: 80%;
+    max-width: 600px;
+    animation: slideUp 0.5s ease;
+    position: relative; /* Menjadikan posisi container relative */
+}
+
+/* Tambahkan kode untuk gambar skinpack-text.png */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Sesuaikan dengan kebutuhanmu */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1; /* Mengatur lapisan di bawah konten utama */
+    background-image: url('skinpack-text.png'); /* Path ke gambar */
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px; /* Sesuaikan dengan lebar gambar */
+    height: 50px; /* Sesuaikan dengan tinggi gambar */
+    opacity: 0.5; /* Sesuaikan opasitas gambar */
+}
+
 
         @keyframes slideUp {
             0% {
