@@ -7,7 +7,7 @@
 
 body, h1, h2, input, select, option, button {
     font-family: 'MinecraftFont', sans-serif;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 
@@ -25,7 +25,7 @@ body {
 body::after {
     content: '';
     position: absolute;
-    bottom: -10px;  /* Mengangkat gambar ke atas */
+    bottom: -17px;  /* Mengangkat gambar ke atas */
     left: 50%;  /* Menengahkan gambar */
     transform: translateX(-50%);  /* Menengahkan gambar */
     width: 100%;
