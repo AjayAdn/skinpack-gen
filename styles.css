@@ -1,14 +1,18 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('minecraft.ttf') format('truetype');
+}
+
 body {
-            background-color: #0E0E0E;
-            color: #FFFFFF;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-/* ... (Kode CSS yang sudah ada sebelumnya) ... */
+    background-color: #0E0E0E;
+    color: #FFFFFF;
+    font-family: 'Minecraft', Arial, sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 .container {
     background-color: #1A1A1A;
@@ -19,166 +23,110 @@ body {
     width: 80%;
     max-width: 600px;
     animation: slideUp 0.5s ease;
-    position: relative; /* Menjadikan posisi container relative */
+    position: relative;
+    font-family: 'Minecraft', Arial, sans-serif;
 }
 
-/* Tambahkan kode untuk gambar skinpack-text.png */
 .container::before {
     content: '';
     position: absolute;
-    top: -35px; /* Menaikkan posisi gambar */
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1; /* Mengatur lapisan di atas konten utama */
-    background-image: url('skinpack-text.png'); /* Path ke gambar */
+    z-index: 1;
+    background-image: url('skinpack-text.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 140px; /* Sesuaikan dengan lebar gambar */
-    height: 90px; /* Sesuaikan dengan tinggi gambar */
-    opacity: 1; /* Sesuaikan opasitas gambar */
+    width: 150px;
+    height: 100px;
+    opacity: 1;
 }
 
-/* Mengatur margin atas untuk form */
 #formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
-    margin-top: 40px; /* Menyesuaikan dengan tinggi gambar */
+    margin-top: 40px;
 }
 
-        @keyframes slideUp {
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+#skinPackName {
+    width: calc(100% - 130px); /* Sesuaikan panjang input */
+    margin-right: 10px; /* Jarak kanan */
+}
 
-        .dark {
-            background-color: #212121;
-            color: #FFFFFF;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            width: 100%;
-        }
+.yellow {
+    background-color: #F4CE14;
+    color: #000000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+}
 
-        .yellow {
-            background-color: #F4CE14;
-            color: #000000;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
+#formSection button {
+    margin-left: 10px; /* Jarak kiri */
+}
 
-        .yellow:hover {
-            background-color: #DAA520;
-        }
+@keyframes slideUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
-        #formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
-            margin-bottom: 20px;
-        }
+.dark {
+    background-color: #212121;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
 
-        h2 {
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+/* ... (Kode CSS yang lain tetap sama) ... */
 
-        img {
-            max-width: 200px;
-            margin-top: 10px;
-            display: block;
-        }
+.upload-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        .skin-item {
-            display: flex;
-            align-items: center;
-            background-color: #2a2a2a;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+.upload-button {
+    background-color: transparent;
+    color: #FFD700;
+    border: 1.9px dashed #FFD700;
+    border-radius: 5px;
+    padding: 5%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-        .skin-item img {
-            max-width: 50px;
-            margin-right: 10px;
-        }
+.plus-icon {
+    font-size: 40px;
+}
 
-        .skin-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+.upload-text {
+    margin-top: 5px;
+    color: #FFFFFF;
+}
 
-        .skin-name {
-            font-size: 17px;
-            margin-bottom: 5px;
-        }
-
-        .skin-type {
-            font-size: 13px;
-            font-style: italic;
-        }
-
-        .delete-icon {
-            cursor: pointer;
-            color: #FF4500;
-            font-size: 20px;
-            margin-left: auto;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                padding: 20px;
-            }
-        }
-
-        .upload-container {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            
-        }
-
-        .upload-button {
-            background-color: transparent;
-            color: #FFD700;
-            border: 1.9px dashed #FFD700;
-            border-radius: 5px;
-            padding: 5%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .plus-icon {
-            font-size: 40px;
-        }
-
-        .upload-text {
-            margin-top: 5px;
-            color: #FFFFFF;
-        }
-
-        #skinType {
-            background-color: #212121;
-            color: #FFFFFF;
-        }
+#skinType {
+    background-color: #212121;
+    color: #FFFFFF;
+}
