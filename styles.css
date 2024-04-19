@@ -190,8 +190,8 @@ img {
 }
 
 
-input[type="text"], select {
-    padding-right: 10px;  /* Mengatur padding kanan untuk kolom */
+.dark, .yellow, input[type="text"], select {
+    margin-right: 10px;  /* Mengatur padding kanan untuk kolom */
     width: 100%; /* Mengatur lebar kolom */
     box-sizing: border-box; /* Menyesuaikan box model */
 }
