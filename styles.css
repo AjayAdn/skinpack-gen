@@ -8,8 +8,7 @@ body {
             align-items: center;
             height: 100vh;
         }
-
-        /* ... (Kode CSS yang sudah ada sebelumnya) ... */
+/* ... (Kode CSS yang sudah ada sebelumnya) ... */
 
 .container {
     background-color: #1A1A1A;
@@ -27,18 +26,22 @@ body {
 .container::before {
     content: '';
     position: absolute;
-    top: -20px; /* Sesuaikan dengan kebutuhanmu */
+    top: -30px; /* Menaikkan posisi gambar */
     left: 50%;
     transform: translateX(-50%);
-    z-index: -1; /* Mengatur lapisan di bawah konten utama */
+    z-index: 1; /* Mengatur lapisan di atas konten utama */
     background-image: url('skinpack-text.png'); /* Path ke gambar */
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100px; /* Sesuaikan dengan lebar gambar */
-    height: 50px; /* Sesuaikan dengan tinggi gambar */
-    opacity: 0.5; /* Sesuaikan opasitas gambar */
+    width: 130px; /* Sesuaikan dengan lebar gambar */
+    height: 80px; /* Sesuaikan dengan tinggi gambar */
+    opacity: 1; /* Sesuaikan opasitas gambar */
 }
 
+/* Mengatur margin atas untuk form */
+#formSection, #uploadSection, #previewSection, #downloadSection, #skinList {
+    margin-top: 40px; /* Menyesuaikan dengan tinggi gambar */
+}
 
         @keyframes slideUp {
             0% {
