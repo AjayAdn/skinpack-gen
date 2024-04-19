@@ -191,5 +191,7 @@ img {
 
 
 input[type="text"], select {
-    width: 100%;
+    padding-right: 10px;  /* Mengatur padding kanan untuk kolom */
+    width: 100%; /* Mengatur lebar kolom */
+    box-sizing: border-box; /* Menyesuaikan box model */
 }
