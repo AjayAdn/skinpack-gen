@@ -190,5 +190,5 @@ img {
 }
 
 .dark, .yellow, input[type="text"], select {
-    padding-right: 38px;
+    padding-right: 0px;
 }
