@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Set minimum height */
+    min-height: 100vh;
     position: relative;
 }
 
@@ -26,10 +26,10 @@ body::after {
     content: '';
     position: absolute;
     bottom: -50px;
-    left: 50%;  /* Menengahkan gambar */
+    left: 50%; 
     transform: translateX(-48%);
     width: 100%;
-    height: 230px; /* Sesuaikan dengan tinggi gambar */
+    height: 230px;
     z-index: -1;
     background-image: url('portal.png');
     background-size: cover;
