@@ -28,15 +28,51 @@ body {
 body::after {
     content: '';
     position: absolute;
-    left: 50%; 
-    transform: translateX(-50%);
     width: 100%;
     height: 230px;
     z-index: -1;
     background-image: url('portal.png');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: right center;
     bottom: 125px;
+    right: 0;
+    transform: translateY(-40%);
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    body::after {
+        height: 200px;
+        bottom: 100px;
+        background-size: contain;
+        background-position: right center;
+        transform: translateY(-20%);
+    }
+}
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+    body::after {
+        height: 250px; /* Perbesar tinggi */
+        width: 100%; /* Tetap 100%, jangan lebih dari layar */
+        bottom: 50px; /* Sesuaikan posisinya */
+        background-size: contain; /* Tetap memenuhi elemen */
+        background-position: right center; /* Tetap di kanan */
+        transform: translateY(-25%) translateX(20%) scale(1.1); /* Perbesar elemen dengan scale */
+    }
+}
+
+
+/* Large screens (1025px and above) */
+@media (min-width: 1025px) {
+    body::after {
+        height: 300px;
+        bottom: 130px;
+        background-size: contain;
+        background-position: right center;
+        transform: translateY(0%);
+    }
 }
 
 .container {
