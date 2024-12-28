@@ -2,48 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Skin Pack Maker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Pack Maker</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 </head>
 <body>
-
-<div class="container">
-    <div id="formSection">
-        <label for="skinPackName">Name Skin Pack:</label>
-        <input type="text" id="skinPackName" placeholder="Enter Skin Pack Name" class="dark" required>
-        <button onclick="showUploadSection()" class="yellow">Next</button>
-    </div>
-
-    <div id="uploadSection" style="display:none;">
-        <div class="upload-container">
-            <input type="file" id="skinImage" style="display:none;" accept=".png, .jpg" onchange="uploadSkin()">
-            <label for="skinImage" class="upload-button" id="uploadButton">
-                <span class="plus-icon">+</span>
-            </label>
-            <img id="previewImage" style="width: 100px; height: 100px; display:none;" onclick="openFileInput()">
+    <div class="container">
+        <!-- Form Section -->
+        <div id="formSection">
+            <label for="skinPackName">Name Skin Pack:</label>
+            <input type="text" id="skinPackName" placeholder="Enter Skin Pack Name" class="dark" required>
+            <button onclick="showUploadSection()" class="yellow">Next</button>
+            <div id="editSection" style="display:block;">
+                <p class="info-text"><i>*If you already have a skinpack and want to edit it, click the Upload Skinpack button below.</i></p>
+                <button onclick="document.getElementById('editSkinPack').click()" class="purple">Upload Skin Pack</button>
+                <input type="file" id="editSkinPack" accept=".mcpack" style="display:none;" onchange="loadSkinPack()">
+            </div>
         </div>
-        <label for="skinName">Name Skin:</label>
-        <input type="text" id="skinName" placeholder="Enter Skin Name" class="dark">
-        <label for="skinType">Type Skin:</label>
-        <select id="skinType" class="dark">
-            <option value="default">Normal</option>
-            <option value="slim">Slim</option>
-        </select>
-        <button onclick="addToSkinPack()" class="yellow">Add to Skin Pack</button>
+
+        <!-- Upload Section -->
+        <div id="uploadSection" style="display:none;">
+            <div class="upload-container">
+                <input type="file" id="skinImage" style="display:none;" accept=".png, .jpg" onchange="uploadSkin()">
+                <label for="skinImage" class="upload-button" id="uploadButton">
+                    <span class="plus-icon">+</span>
+                </label>
+                <img id="previewImage" style="width: 100px; height: 100px; display:none;" onclick="openFileInput()">
+            </div>
+            <label for="skinName">Name Skin:</label>
+            <input type="text" id="skinName" placeholder="Enter Skin Name" class="dark">
+            <label for="skinType">Type Skin:</label>
+            <select id="skinType" class="dark">
+                <option value="default">Normal</option>
+                <option value="slim">Slim</option>
+            </select>
+            <button onclick="addToSkinPack()" class="yellow">Add to Skin Pack</button>
+        </div>
+
+        <!-- Download Section -->
+        <div>
+            <button onclick="downloadSkinPack()" class="purple" id="downloadButton" style="display:none;">Download Skin Pack Now!</button>
+        </div>
+
+        <!-- Skin List -->
+        <div id="skinList" style="display:none;">
+            <!-- Skin items will be added dynamically -->
+        </div>
     </div>
 
-    <div>
-        <button onclick="downloadSkinPack()" class="yellow" id="downloadButton" style="display:none;">Download Skin Pack Now!</button>
-    </div>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <img src="skinpack-text.png" alt="SkinPack" class="footer-logo">
+        <p class="footer-link">Youtube: <a href="https://youtube.com/@ajaytamfan?si=OjbH6PxcgZo37TRD">AjayMC</a></p>
+        <p class="footer-link">MCPEDL: <a href="https://mcpedl.com/user/ajaymc/">AjayMC</a></p>
+        <p class="footer-link">Donate Me: <a href="https://saweria.co/ajaymc">AjayMC</a></p><br>
+        <p class="footer-copyright">© 2024 SkinPack Generator. All rights reserved.</p>
+    </footer>
 
-    <div id="skinList" style="display:none;">
-        <!-- Skin items will be added here -->
-    </div>
-</div>
-
-<script src="scripts.js"></script>
-
+    <script src="scripts.js"></script>
 </body>
 </html>
