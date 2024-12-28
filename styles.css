@@ -54,12 +54,13 @@ body::after {
 /* Mobile (up to 767px) */
 @media (max-width: 767px) {
     body::after {
-        height: 250px; /* Perbesar tinggi */
-        width: 100%; /* Tetap 100%, jangan lebih dari layar */
-        bottom: 50px; /* Sesuaikan posisinya */
-        background-size: contain; /* Tetap memenuhi elemen */
-        background-position: right center; /* Tetap di kanan */
-        transform: translateY(-25%) translateX(20%) scale(1.1); /* Perbesar elemen dengan scale */
+        position: absolute;
+        height: 250px;  /* Menambah tinggi gambar */
+        width: 100%;
+        bottom: 30px;
+        background-size: contain;  /* Menjaga gambar tetap besar */
+        background-position: right center;
+        transform: translateY(-28%)
     }
 }
 
