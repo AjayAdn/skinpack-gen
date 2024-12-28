@@ -11,80 +11,116 @@ function showUploadSection() {
     document.getElementById('uploadSection').style.display = 'block';
 }
 
-function openFileInput() {
-    document.getElementById('skinImage').click();
+function toggleEditSection() {
+    const editSection = document.getElementById('editSection');
+    editSection.style.display = editSection.style.display === 'none' ? 'block' : 'none';
 }
 
-function uploadSkin() {
-    const skinImages = document.getElementById('skinImage').files;
-    const uploadButton = document.getElementById('uploadButton');
-    const previewImage = document.getElementById('previewImage');
+function openEditInput() {
+    document.getElementById('editSkinPack').click();
+}
+
+function loadSkinPack() {
+    const fileInput = document.getElementById('editSkinPack');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select a file');
+        return;
+    }
+
+    if (!file.name.endsWith('.mcpack')) {
+        alert('Invalid file format. Please upload a .mcpack file.');
+        return;
+    }
+
+    const reader = new FileReader();
     
-    if (skinImages.length > 0) {
-        const img = new Image();
-        const reader = new FileReader();
+    reader.onload = function(e) {
+        JSZip.loadAsync(e.target.result).then(function(zip) {
+            const skinsJsonFile = findSkinJson(zip);
+            if (!skinsJsonFile) {
+                alert('Invalid Skin Pack. Missing skins.json.');
+                return;
+            }
 
-        reader.onload = function(e) {
-            img.src = e.target.result;
+            const skinsJsonPath = skinsJsonFile.name;
+            
+            skinsJsonFile.async('string').then(function(data) {
+                try {
+                    const skins = JSON.parse(data).skins;
+                    if (skins && Array.isArray(skins)) {
+                        const texturePromises = skins.map(skin => {
+                            const texturePath = getTexturePath(skin.texture, skinsJsonPath);
+                            const textureFile = zip.file(texturePath);
+                            
+                            if (textureFile) {
+                                return textureFile.async('base64').then(base64Data => ({
+                                    geometry: skin.geometry,
+                                    localization_name: skin.localization_name,
+                                    texture: base64Data,
+                                    type: skin.type || 'free'
+                                }));
+                            } else {
+                                console.warn(`Missing texture file: ${texturePath}`);
+                                return null;
+                            }
+                        });
 
-            img.onload = function() {
-                if (img.width === 32 || img.width === 64 || img.width === 128) {
-                    previewImage.src = reader.result;
-                    previewImage.style.display = 'block';
-                    uploadButton.remove();
-                    document.querySelector('.upload-container').removeChild(uploadButton);
-                } else {
-                    alert('Please upload an image with size 32x32, 64x64, or 128x128.');
+                        Promise.all(texturePromises).then(results => {
+                            skinData = results.filter(Boolean);
+                            const manifestFile = zip.file('manifest.json');
+                            if (manifestFile) {
+                                manifestFile.async('string').then(function(manifestData) {
+                                    try {
+                                        const manifest = JSON.parse(manifestData);
+                                        skinPackName = manifest.header.name || 'Unknown Skin Pack';
+                                    } catch (err) {
+                                        console.warn('Failed to parse manifest.json:', err);
+                                        skinPackName = 'Unknown Skin Pack';
+                                    }
+                                });
+                            } else {
+                                skinPackName = 'Unknown Skin Pack';
+                            }
+
+                            document.getElementById('skinPackName').value = skinPackName;
+                            document.getElementById('formSection').style.display = 'none';
+                            document.getElementById('uploadSection').style.display = 'block';
+                            updateSkinList();
+                        });
+                    } else {
+                        throw new Error('Invalid skins.json format');
+                    }
+                } catch (err) {
+                    alert('Failed to parse skins.json. Please check the file.');
+                    console.error(err);
                 }
-            };
-        };
+            });
+        }).catch(function(err) {
+            alert('Failed to load .mcpack file. Please try again.');
+            console.error(err);
+        }).finally(() => {
+            
+        });
+    };
 
-        reader.readAsDataURL(skinImages[0]);
-    }
+    reader.readAsArrayBuffer(file);
 }
 
-function addToSkinPack() {
-    const previewSkinName = document.getElementById('skinName').value;
-    const previewImage = document.getElementById('previewImage').src;
-
-    if (!previewSkinName) {
-        alert('Name Skin must be filled out');
-        return;
+function findSkinJson(zip) {
+    for (const fileName of Object.keys(zip.files)) {
+        if (fileName.toLowerCase().endsWith('skins.json')) {
+            return zip.file(fileName);
+        }
     }
-    if (!previewImage || previewImage === '') {
-        alert('Please upload an image');
-        return;
-    }
+    return null;
+}
 
-    const isSkinExist = skinData.some(skin => skin.localization_name === previewSkinName);
-    if (isSkinExist) {
-        alert('Skin name already exists, please choose another name');
-        return;
-    }
+function getTexturePath(texture, skinsJsonPath) {
+    const skinsJsonDir = skinsJsonPath.substring(0, skinsJsonPath.lastIndexOf('/'));
 
-    const previewSkinType = document.getElementById('skinType').value;
-
-    const skinItem = {
-        geometry: `geometry.humanoid.${previewSkinType}`,
-        localization_name: `${previewSkinName}`,
-        texture: previewImage.split(',')[1],
-        type: "free"
-    };
-    skinData.push(skinItem);
-    updateSkinList();
-
-    document.getElementById('skinName').value = '';
-    document.getElementById('skinType').value = 'default';
-    document.getElementById('previewImage').style.display = 'block';
-
-    const uploadContainer = document.querySelector('.upload-container');
-    if (!uploadContainer.querySelector('p')) {
-        const uploadText = document.createElement('p');
-        uploadText.textContent = 'Click your skin to upload another';
-        uploadText.style.fontSize = '12px';
-        uploadText.style.fontStyle = 'italic';
-        uploadContainer.appendChild(uploadText);
-    }
+    return skinsJsonDir + '/' + texture;
 }
 
 function updateSkinList() {
@@ -97,7 +133,7 @@ function updateSkinList() {
 
         const skinImg = document.createElement('img');
         skinImg.src = `data:image/png;base64,${skin.texture}`;
-        skinImg.className = 'skin-img'; // Tambahkan class skin-img
+        skinImg.className = 'skin-img';
         skinItem.appendChild(skinImg);
 
         const skinInfo = document.createElement('div');
@@ -118,10 +154,11 @@ function updateSkinList() {
         const deleteIcon = document.createElement('span');
         deleteIcon.className = 'delete-icon';
         deleteIcon.onclick = function() {
-            skinData.splice(index, 1);
-            updateSkinList();
-        };
+          skinData.splice(index, 1);
+         updateSkinList();
+   };
         skinItem.appendChild(deleteIcon);
+
 
         skinListDiv.appendChild(skinItem);
     });
@@ -134,6 +171,9 @@ function updateSkinList() {
         document.getElementById('downloadButton').style.display = 'none';
     }
 }
+
+
+
 
 function downloadSkinPack() {
     generateSkinPack(skinPackName);
@@ -210,6 +250,90 @@ function generateUUID() {
     });
 }
 
-  document.addEventListener('gesturestart', function (e) {
+document.addEventListener('gesturestart', function(e) {
     e.preventDefault();
-  });
+});
+
+
+
+function uploadSkin() {
+    const skinImages = document.getElementById('skinImage').files;
+    const uploadButton = document.getElementById('uploadButton');
+    const previewImage = document.getElementById('previewImage');
+
+    if (skinImages.length > 0) {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            img.src = e.target.result;
+
+            img.onload = function() {
+                if (img.width === 32 || img.width === 64 || img.width === 128) {
+                    previewImage.src = reader.result;
+                    previewImage.style.display = 'block';
+
+                    if (uploadButton) {
+                        uploadButton.remove();
+                        document.querySelector('.upload-container').removeChild(uploadButton);
+                    }
+                } else {
+                    alert('Please upload an image with size 32x32, 64x64, or 128x128.');
+                }
+            };
+        };
+
+        reader.readAsDataURL(skinImages[0]);
+    }
+}
+
+function openFileInput() {
+    document.getElementById('skinImage').click();
+}
+
+function addToSkinPack() {
+    const previewSkinName = document.getElementById('skinName').value;
+    const previewImage = document.getElementById('previewImage').src;
+
+    if (!previewSkinName) {
+        alert('Name Skin must be filled out');
+        return;
+    }
+    if (!previewImage || previewImage === '') {
+        alert('Please upload an image');
+        return;
+    }
+
+    const isSkinExist = skinData.some(skin => skin.localization_name === previewSkinName);
+    if (isSkinExist) {
+        alert('Skin name already exists, please choose another name');
+        return;
+    }
+
+    const previewSkinType = document.getElementById('skinType').value;
+    const geometryType = previewSkinType === 'slim' 
+        ? 'geometry.humanoid.customSlim' 
+        : 'geometry.humanoid.custom';
+
+    const skinItem = {
+        geometry: geometryType,
+        localization_name: `${previewSkinName}`,
+        texture: previewImage.split(',')[1],
+        type: "free"
+    };
+    skinData.push(skinItem);
+    updateSkinList();
+
+    document.getElementById('skinName').value = '';
+    document.getElementById('skinType').value = 'default';
+    document.getElementById('previewImage').style.display = 'block';
+
+    const uploadContainer = document.querySelector('.upload-container');
+    if (!uploadContainer.querySelector('p')) {
+        const uploadText = document.createElement('p');
+        uploadText.textContent = 'Click your skin to upload another';
+        uploadText.style.fontSize = '12px';
+        uploadText.style.fontStyle = 'italic';
+        uploadContainer.appendChild(uploadText);
+    }
+}
